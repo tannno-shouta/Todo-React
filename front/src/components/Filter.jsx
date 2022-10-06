@@ -14,21 +14,23 @@ export const Filter = (props) => {
   return (
     <>
       <div className="panel-block">
-        <a
-          href="#"
-          onClick={handleClick.bind(null, 'ALL')}
-          className={classNames({ 'is-active': value === 'ALL' })}
-        >All</a>
-        <a
-          href="#"
-          onClick={handleClick.bind(null, 'TODO')}
-          className={classNames({ 'is-active': value === 'TODO' })}
-        >ToDo</a>
-        <a
-          href="#"
-          onClick={handleClick.bind(null, 'DONE')}
-          className={classNames({ 'is-active': value === 'DONE' })}
-        >Done</a>
+        <div className="filter-content">
+          <a
+            href="#"
+            onClick={handleClick.bind(null, 'ALL')}
+            className={classNames({ 'is-active': value === 'ALL' })}
+          >All</a>
+          <a
+            href="#"
+            onClick={handleClick.bind(null, 'TODO')}
+            className={classNames({ 'is-active': value === 'TODO' })}
+          >ToDo</a>
+          <a
+            href="#"
+            onClick={handleClick.bind(null, 'DONE')}
+            className={classNames({ 'is-active': value === 'DONE' })}
+          >Done</a>
+        </div>
       </div>
 
       <style jsx> {`
@@ -37,8 +39,13 @@ export const Filter = (props) => {
             padding: 30px 50px;
             font-size: 20px;
             border-radius: 3px; 
-            border: 2px solid #ddd; 
-            box-sizing: border-box; 
+            border: 2px solid #ddd;
+            box-sizing: border-box;
+            display: flex
+          }
+
+          .filter-content {
+            margin:auto
           }
       `}</style>
     </>

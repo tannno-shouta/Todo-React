@@ -12,20 +12,22 @@ export const ToDo = (props) => {
  
   return (
     <>
-      <label className="panel-block">
-        <input
-          type="checkbox"
-          checked={todo.done}
-          onChange={handleChange}
-        />
-        <span
-          className={classNames({
-            'has-text-grey-light': todo.done
-          })}
-        >
-          {todo.text}
-        </span>
-      </label>
+      <div className="panel-block">
+        <label className="todo-content">
+          <input
+            type="checkbox"
+            checked={todo.done}
+            onChange={handleChange}
+          />
+          <span
+            className={classNames({
+              'has-text-grey-light': todo.done
+            })}
+         >
+            {todo.text}
+          </span>
+        </label>
+      </div>
 
       <style jsx> {`
         .panel-block {
@@ -34,6 +36,12 @@ export const ToDo = (props) => {
           font-size: 20px;
           border-radius: 3px; 
           border: 2px solid #ddd;
+          box-sizing: border-box;
+          display: flex
+        }
+
+        .todo-content{
+          margin:auto
         }
       `}</style>
     </>

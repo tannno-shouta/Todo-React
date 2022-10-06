@@ -44,12 +44,23 @@ export const ToDoApp = () => {
   return (
     < >
       <Header></Header>
-      <InputToDo onAdd={handleAdd}></InputToDo>
-      <Filter onChange={handleFilterChange}
-              value={filter}></Filter>
-      <ToDo key={todo.key}
-            todo={todo}
-            onCheck={handleCheck}></ToDo>
+
+      <InputToDo 
+        onAdd={handleAdd}>
+      </InputToDo>
+
+      <Filter 
+        onChange={handleFilterChange}
+        value={filter}>
+      </Filter>
+
+      {todos.map((todo) => (
+        <ToDo 
+          key={todo.key}
+          todo={todo}
+          onCheck={handleCheck}>
+        </ToDo>
+      ))}
     </>
   );
 };
