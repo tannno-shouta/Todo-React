@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export const ToDoApp = () => {
- 
+
   // ランダムなキーを取得
   const getKey = () => Math.random().toString(32).substring(2);
- 
+
   // stateを作成
   const [todos, setToDos] = useState([]);
   const [filter, setFilter] = useState('ALL');
@@ -21,7 +21,7 @@ export const ToDoApp = () => {
 
   // フィルターの切り替え
   const handleFilterChange = value => setFilter(value);
- 
+
   // フィルターに応じたToDoを表示
   const displayToDos = todos.filter(todo => {
     if (filter === 'ALL') return true;
@@ -43,7 +43,7 @@ export const ToDoApp = () => {
   };
 
   useEffect(() => {
-    axios.get("https://localhost:3000").then((response) => {
+    axios.get("http://localhost:3000").then((response) => {
       console.log(response.data)
     });
   }, []);
@@ -52,17 +52,17 @@ export const ToDoApp = () => {
     < >
       <Header></Header>
 
-      <InputToDo 
+      <InputToDo
         onAdd={handleAdd}>
       </InputToDo>
 
-      <Filter 
+      <Filter
         onChange={handleFilterChange}
         value={filter}>
       </Filter>
 
       {todos.map((todo) => (
-        <ToDo 
+        <ToDo
           key={todo.key}
           todo={todo}
           onCheck={handleCheck}>
