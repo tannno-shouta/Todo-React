@@ -2,7 +2,8 @@ import {Header} from "./components/Header";
 import {InputToDo} from "./components/InputToDo";
 import {Filter} from "./components/Filter";
 import {ToDo} from "./components/ToDo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const ToDoApp = () => {
  
@@ -40,6 +41,12 @@ export const ToDoApp = () => {
     });
     setToDos(newToDos);
   };
+
+  useEffect(() => {
+    axios.get("https://localhost:3000").then((response) => {
+      console.log(response.data)
+    });
+  }, []);
 
   return (
     < >
