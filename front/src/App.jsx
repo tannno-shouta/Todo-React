@@ -43,7 +43,7 @@ export const ToDoApp = () => {
   };
 
   useEffect(() => {
-    axios.get("https://localhost:3000").then((response) => {
+    axios.get("http://localhost:3000").then((response) => {
       console.log(response.data)
     });
   }, []);
