@@ -1,15 +1,16 @@
 import classNames from 'classnames';
+import axios from "axios";
 
 export const ToDo = (props) => {
- 
+
   // stateを作成
-  const { todo, onCheck } = props;
- 
+  const { todo, onCheck, handleDelete } = props;
+
   // チェックボックス押下時、ToDoAppクラスの「handleCheck」関数を実行
   const handleChange = () => {
     onCheck(todo);
   };
- 
+
   return (
     <>
       <div className="panel-block">
@@ -27,14 +28,15 @@ export const ToDo = (props) => {
             {todo.text}
           </span>
         </label>
+        <button onClick={handleDelete}>削除</button>
       </div>
 
       <style jsx> {`
         .panel-block {
-          width: 100%; 
+          width: 100%;
           padding: 30px 50px;
           font-size: 20px;
-          border-radius: 3px; 
+          border-radius: 3px;
           border: 2px solid #ddd;
           box-sizing: border-box;
           display: flex
@@ -47,5 +49,5 @@ export const ToDo = (props) => {
     </>
   );
 }
- 
+
 export default ToDo;
