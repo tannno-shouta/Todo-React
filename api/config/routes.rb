@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "todos#index"
+  post "/", to: "todos#create"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
