@@ -45,8 +45,20 @@ export const ToDoApp = () => {
   useEffect(() => {
     axios.get("http://localhost:3000").then((response) => {
       console.log(response.data)
+      setToDos(response.data)
     });
   }, []);
+
+  const url = axios.get("http://localhost:3000/")
+
+    // thenで成功した場合の処理
+    .then(() => {
+        console.log("ステータスコード:", status);
+    })
+    // catchでエラー時の挙動を定義
+    .catch(err => {
+        console.log("err:", err);
+    });
 
   return (
     < >
