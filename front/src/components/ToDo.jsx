@@ -3,12 +3,17 @@ import classNames from 'classnames';
 export const ToDo = (props) => {
  
   // stateを作成
-  const { todo, onCheck } = props;
+  const { todo, onCheck onClick} = props;
  
   // チェックボックス押下時、ToDoAppクラスの「handleCheck」関数を実行
   const handleChange = () => {
     onCheck(todo);
   };
+// deleteボタン押下時、ToDoAppクラスの「handleCheck」関数を実行
+  const onClickDelete = () => {
+    onClick(todo)
+  };
+
  
   return (
     <>
@@ -26,6 +31,8 @@ export const ToDo = (props) => {
          >
             {todo.text}
           </span>
+
+          <a href="" class="btn btn--delete btn--radius">delete</a>
         </label>
       </div>
 
@@ -43,6 +50,18 @@ export const ToDo = (props) => {
         .todo-content{
           margin:auto
         }
+
+        .btn--delete,
+         a.btn--delete {
+          color: #fff;
+          background-color: #F44336;
+        }
+         .btn--delete:hover,
+         a.btn--delete:hover {
+          color: #fff;
+          background: #f56500;
+        }
+
       `}</style>
     </>
   );

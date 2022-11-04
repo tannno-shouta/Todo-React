@@ -1,24 +1,20 @@
 class TodosController < ApplicationController
+  protect_from_forgery
 
   def index
     todos = Todo.all
     render json: todos
   end
 
-  def new 
-    @todos = Todo.new
-  end
-
   def create
-    @todos = Todo.new
-  if  @todos.save
-      redirect_to root_path
-  else
-    render :new
+    text = param["text"]
+    Todo.create({text: text})
+    render json: Todo.all
   end
 
   def destroy
-    @todos.destroy
-    redirect_to root_path
+    Todo.destroy({text: text})
+    render json: Todo.all
   end
+
 end
