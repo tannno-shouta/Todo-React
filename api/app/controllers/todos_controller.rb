@@ -7,13 +7,14 @@ class TodosController < ApplicationController
   end
 
   def create
-    text = param["text"]
+    text = params["text"]
     Todo.create({text: text})
     render json: Todo.all
   end
 
   def destroy
-    Todo.destroy({text: text})
+    delete_id = params["id"]
+    Todo.destroy(delete_id)
     render json: Todo.all
   end
 

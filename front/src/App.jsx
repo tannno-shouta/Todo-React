@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export const ToDoApp = () => {
- 
+
   // ランダムなキーを取得
   const getKey = () => Math.random().toString(32).substring(2);
- 
+
   // stateを作成
   const [todos, setToDos] = useState([]);
   const [filter, setFilter] = useState('ALL');
@@ -25,7 +25,7 @@ export const ToDoApp = () => {
 
   // フィルターの切り替え
   const handleFilterChange = value => setFilter(value);
- 
+
   // フィルターに応じたToDoを表示
   const displayToDos = todos.filter(todo => {
     if (filter === 'ALL') return true;
@@ -38,13 +38,20 @@ export const ToDoApp = () => {
   const handleCheck = checked => {
     // チェックがついたToDoの真偽値(done)を変更
     const newToDos = todos.map(todo => {
-      if (todo.key === checked.key) {
+      if (todo.id === checked.id) {
         todo.done = !todo.done;
       }
       return todo;
     });
     setToDos(newToDos);
   };
+
+  const handleDelete = id => {
+    axios.delete("http://localhost:3300", {data: {id}}).then((response) => {
+      console.log(response.data)
+      setToDos(response.data)
+    })
+  }
 
   useEffect(() => {
     axios.get("http://localhost:3300").then((response) => {
@@ -53,28 +60,27 @@ export const ToDoApp = () => {
     });
   }, []);
 
-  axios.delete("http://localhost:3300").then((response) => {
-    console.log(response.data)
-  })
 
   return (
     < >
       <Header></Header>
 
-      <InputToDo 
+      <InputToDo
         onAdd={handleAdd}>
       </InputToDo>
 
-      <Filter 
+      <Filter
         onChange={handleFilterChange}
         value={filter}>
       </Filter>
 
       {todos.map((todo) => (
-        <ToDo 
+        <ToDo
           key={todo.key}
           todo={todo}
-          onCheck={handleCheck}>
+          onCheck={handleCheck}
+          onClick={handleDelete}
+        >
         </ToDo>
       ))}
     </>

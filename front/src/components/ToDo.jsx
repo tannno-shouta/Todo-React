@@ -1,20 +1,20 @@
 import classNames from 'classnames';
 
 export const ToDo = (props) => {
- 
+
   // stateを作成
-  const { todo, onCheck onClick} = props;
- 
+  const { todo, onCheck, onClick} = props;
+
   // チェックボックス押下時、ToDoAppクラスの「handleCheck」関数を実行
   const handleChange = () => {
     onCheck(todo);
   };
 // deleteボタン押下時、ToDoAppクラスの「handleCheck」関数を実行
   const onClickDelete = () => {
-    onClick(todo)
+    onClick(todo.id)
   };
 
- 
+
   return (
     <>
       <div className="panel-block">
@@ -32,16 +32,16 @@ export const ToDo = (props) => {
             {todo.text}
           </span>
 
-          <a href="" class="btn btn--delete btn--radius">delete</a>
+          <button onClick={onClickDelete} class="btn btn--delete btn--radius">delete</button>
         </label>
       </div>
 
       <style jsx> {`
         .panel-block {
-          width: 100%; 
+          width: 100%;
           padding: 30px 50px;
           font-size: 20px;
-          border-radius: 3px; 
+          border-radius: 3px;
           border: 2px solid #ddd;
           box-sizing: border-box;
           display: flex
@@ -66,5 +66,5 @@ export const ToDo = (props) => {
     </>
   );
 }
- 
+
 export default ToDo;
